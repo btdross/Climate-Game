@@ -1,0 +1,567 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Climate Choices Game&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(20px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--bg-color-start: #f8c8dc;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--bg-color-end: #c8dcf8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--card-bg: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--border-color: #e2e8f0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--text-color: #334155;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary-color: #81c784;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary-hover: #66bb6a;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--accent-color: #64b5f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--negative-color: #e57373;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Montserrat', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, var(--bg-color-start) 0%, var(--bg-color-end) 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 1s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.game-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--card-bg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.game-header {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.game-header h1 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--accent-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.score-display {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.round-display {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.8;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scenario-box {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.8s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scenario-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.125rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.illustration {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 1rem 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.options-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 1s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.option-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.option-btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-hover);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.outcome-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--border-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 1s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.next-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--accent-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1rem 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.2s, transform 0.1s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.next-btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #8bbbe8;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.final-screen {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gap: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 1s ease-in-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.final-screen h2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.2;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--accent-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.final-score-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.report-heading {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 700;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="game-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="game-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 id="game-title"&gt;Climate Choices&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="round-display"&gt;Round &lt;span id="round-number"&gt;1&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="score-display"&gt;Score: &lt;span id="score-value"&gt;0&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="game-state"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="scenario-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="scenario-text" id="scenario-text"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="illustration" id="illustration-container"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="options-container" id="options-container"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="outcome-state" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="outcome-text" id="outcome-text"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="next-btn" class="next-btn mt-4"&gt;Next Round&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="final-screen" class="final-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 id="final-message"&gt;&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="final-score-text" class="final-score-text"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="restart-btn" class="next-btn mt-4"&gt;Play Again&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Game data object that holds all the scenarios, choices, and outcomes.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const gameData = [</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>round: 1,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "Round 1: The Energy Transition (Year 2025)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>illustration: "🏭",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scenario: "The global community faces a critical choice to combat air pollution and rising temperatures. We must decide on a path for the future of energy production.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Massive investment in global renewable energy infrastructure, subsidizing new technologies and phasing out fossil fuels.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "The world has successfully transitioned to clean energy. Air pollution has plummeted, and sea-level rise has slowed. However, the rapid change caused significant economic disruption, leading to job losses in the old energy sector and short-term energy price hikes.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Rapid reduction in carbon emissions, cleaner air, and creation of new jobs in the green sector.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Massive initial investment ($10+ trillion), potential for short-term economic instability, and technological challenges in energy storage.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 50</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Allow the market to dictate the pace of transition, continuing to use fossil fuels while slowly adopting cleaner technologies.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Carbon emissions have continued to rise, leading to more frequent and intense natural disasters. Coastal cities are facing severe flooding, and biodiversity is in steep decline. The economy remained stable for a time, but the costs of climate damage are now overwhelming.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Low immediate cost, stability for existing industries and labor forces.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Increased long-term costs from climate disasters (e.g., $50+ trillion in damages), irreversible environmental damage, and decreased quality of life.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -30</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Focus on carbon capture and storage (CCS) technology to capture emissions from existing fossil fuel plants.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This strategy allowed for a gradual reduction in emissions without completely overhauling the energy sector. However, the technology proved less effective than anticipated, and some emissions still leaked into the atmosphere.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Keeps existing infrastructure and skilled labor, offers a 'middle ground' solution.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Extremely high operational costs, a single-solution approach that doesn't address all forms of pollution, and limited long-term effectiveness.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 10</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Implement a global carbon tax on all fossil fuels, with the revenue redistributed to citizens as a dividend.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "The carbon tax created a strong market signal for companies to reduce emissions, and the citizen dividends helped offset increased energy costs. This approach led to a moderately paced, economically just transition.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Creates a powerful economic incentive for clean energy, promotes fairness and helps with the financial burden on citizens.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Difficult to implement on a global scale due to political opposition, and could face public backlash if not managed well.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 35</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Invest in nuclear fusion technology as the ultimate clean energy solution, while maintaining the status quo in the meantime.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Society was in a holding pattern, waiting for the 'holy grail' of clean energy. Fusion remained elusive, and in the meantime, fossil fuel reliance caused a dramatic escalation of climate disasters. The bet on one solution failed.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "The potential for a limitless, zero-emission power source is massive.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Extremely high R&amp;D costs with no guarantee of success, a high-risk bet that could fail to deliver in time.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -50</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>round: 2,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "Round 2: The Future of Food (Year 2075)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>illustration: "🏜️",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scenario: "Following the energy transition, the world grapples with food security. Traditional agriculture is struggling with new climate patterns. We must choose how to feed a growing population.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Promote and subsidize high-tech, lab-grown proteins and vertical farming to feed a growing population with minimal land use.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Food is plentiful and affordable. The pressure on land has been dramatically reduced, allowing for rewilding and ecosystem restoration. However, reliance on a few large corporations for food has created a new kind of economic vulnerability.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Highly efficient, minimal land use, consistent and high-quality food production.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "High initial infrastructure costs, raises ethical concerns, and creates corporate monopolies on food production.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 40</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Fund community-led initiatives to restore soil health and develop small, localized farming networks that are resilient to climate shocks.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Communities have become self-sufficient and resilient, fostering strong local economies. Food quality is high, and social bonds are strong. However, global food distribution is inefficient, and some regions still face food scarcity.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Builds local resilience, empowers communities, reduces transportation costs and carbon footprint.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Lower yields and higher costs, a less efficient solution for a global population, and potential for inconsistent food supply.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 25</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Focus on genetically modified (GM) drought-resistant and high-yield crops to boost traditional agriculture.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "GM crops initially offered a way to combat crop failures, but their reliance on specific pesticides and monoculture led to a collapse of pollinator populations and a loss of genetic diversity.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Potentially high yields and a solution to crop failures in harsh climates.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Significant long-term environmental and biodiversity impacts, risk of corporate control over global seed supply, and public resistance.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -10</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Invest in large-scale, automated mega-farms in new regions that have become fertile due to climate shifts.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This strategy maximized food production but at the expense of a new wave of environmental destruction. The mega-farms required vast amounts of water and led to soil degradation and social displacement.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Maximizes output, creates food surpluses, and can feed a massive population.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Causes large-scale ecological damage, socially disruptive, and creates a reliance on a few food production hubs.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -20</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Promote a global dietary shift away from meat and towards a plant-based diet to reduce the carbon footprint of agriculture.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "A global campaign successfully reduced meat consumption, freeing up massive amounts of land and reducing methane emissions. The result was a healthier population and a greener planet, but not everyone was willing to adapt, leading to cultural clashes and food market disruptions.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Massive reduction in land use and carbon emissions, significant health benefits.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Faces strong cultural and social resistance, requires a complete overhaul of global food systems.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 45</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>round: 3,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "Round 3: Water Scarcity (Year 2125)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>illustration: "💧🚫",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scenario: "With climate change accelerating, freshwater is a dwindling resource. Your society must decide on how to manage this crisis.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Build and manage a global network of large-scale, energy-intensive desalination plants to guarantee water access.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Water is no longer a scarce commodity. Everyone has access to clean drinking water, and deserts have been made fertile. But the energy and financial costs of the project have put a massive strain on the global economy and led to new environmental problems from saline waste.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Provides a reliable water source for large populations, can be used to green desertified areas.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Requires immense energy and capital investment, produces toxic brine as a byproduct that harms marine life.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 60</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Encourage local communities to adopt water conservation, rainwater harvesting, and recycling technologies.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Local communities are incredibly water-efficient and have become a model for sustainable living. However, without a centralized solution, some of the most vulnerable and arid regions still struggle with severe water shortages, leading to mass migrations.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Empowers communities and promotes self-reliance, reduces the need for large-scale infrastructure.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Ineffective for large urban areas, can't solve water scarcity in regions without natural water sources.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 30</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Launch a global initiative to restore wetlands, forests, and other natural water filters and reservoirs.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "The initiative proved to be a slow but highly effective solution. As ecosystems recovered, they naturally replenished groundwater and purified water supplies, leading to long-term sustainability. The initial costs were high, but the payoff was a healthier planet.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "A nature-based solution with multiple co-benefits, including biodiversity and carbon sequestration.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Slow to implement and show results, requires global cooperation and significant upfront funding.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 45</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Invest in cloud seeding technology to artificially induce rainfall in arid regions.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Cloud seeding offered a quick, temporary fix for droughts but had unintended consequences. It altered weather patterns, causing some regions to experience extreme flooding and others to become even drier, leading to a new level of climate chaos.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "A seemingly fast solution to drought in specific areas.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Unpredictable and potentially dangerous side effects, high costs with an unknown long-term payoff.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -20</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Implement strict global water rationing and pricing systems to enforce conservation.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "The strict rationing successfully conserved water but led to deep social and economic divisions. The wealthy could buy more water on a black market, while the poor struggled to survive, leading to social unrest and political instability.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Enforces conservation and reduces waste.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Creates massive social and economic inequality, faces strong public and political opposition.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -40</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>round: 4,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "Round 4: Biodiversity Collapse (Year 2175)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>illustration: "🌳",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scenario: "The previous rounds' choices have had a ripple effect, leading to the collapse of fragile ecosystems. Entire species are disappearing, threatening a catastrophic breakdown of the global food chain. Society must choose how to respond to this extinction crisis.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Create a global network of 'bio-domes' to house and protect endangered species and maintain vital genetic diversity.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "Bio-domes successfully saved a number of species from extinction, preserving a genetic library for future generations. However, this created a sterile, museum-like world where wildlife existed only in captivity, severing humanity's connection to the natural world.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Guarantees the survival of key species, preserves genetic diversity for potential future reintroduction.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Extremely high cost of construction and maintenance, unnatural and confined habitats, does not address the root causes of ecological collapse.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 20</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Launch a worldwide 'rewilding' initiative to restore natural habitats and let nature heal itself, with minimal human intervention.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This bold approach allowed certain ecosystems to recover and flourish over time. The natural world slowly began to rebuild, but not all species could be saved, and the process was incredibly slow, leaving a fragile and unpredictable environment for decades.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Addresses the root cause of the problem by restoring natural processes, highly beneficial for the planet in the long run.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Requires immense amounts of land and time, is a high-risk bet as some species may be lost forever.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 50</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Focus on synthetic biology and de-extinction, using genetic engineering to bring back lost species and create new, more resilient ones.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This path led to amazing scientific breakthroughs. However, the reintroduction of de-extinct species had unforeseen ecological consequences, leading to new biological instabilities. It also sparked a global debate on the ethics of 'playing God' with life.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Offers the chance to reverse extinctions, can create species that are more resilient to future climate shocks.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Raises profound ethical questions, carries a high risk of unintended ecological disaster, and is a very expensive, high-tech solution.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -10</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Prioritize human expansion and safety, dedicating resources to terraforming new habitats on other planets rather than saving a dying Earth.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This choice accelerated the development of off-world colonies. While a small percentage of humanity found a new home, the planet was left to decline, and a deep social rift formed between those who could escape and those who were left behind.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Guarantees the long-term survival of the human species, offers a new beginning.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Is a form of giving up on the planet, highly exclusive and creates extreme social inequality, and requires enormous capital and resources.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -50</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Implement a universal basic income to support those displaced by ecological collapse, while maintaining a policy of non-intervention.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "While a humane social safety net prevented widespread famine and social unrest, the lack of a proactive environmental strategy meant that biodiversity continued to decline. Society became an observer of its own slow ecological downfall.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Provides a safety net for vulnerable populations, prevents social chaos.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Does not address the core environmental problem, is an expensive and unsustainable long-term solution.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 5</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>round: 5,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "Round 5: The Final Form of Society (Year 2225)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>illustration: "🏙️",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scenario: "After centuries of climate crisis and societal evolution, humanity stands at a crossroads. Your last major decision will determine the final structure of global civilization.",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Embrace a fully decentralized, community-based society, with minimal central governance and maximum local autonomy.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This led to the creation of resilient, self-sufficient communities with strong social bonds. However, a lack of global coordination made it difficult to tackle large-scale challenges like pandemics or cosmic events, and some regions lagged behind.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Promotes local resilience and self-reliance, reduces the power of centralized government.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Lacks global coordination for large-scale problems, can lead to uneven development between regions.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 40</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Form a unified, global government with centralized control over resources, technology, and population to ensure survival.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "The new global government was highly efficient at managing resources and implementing large-scale climate solutions. However, the loss of individual freedoms and local cultures led to a stagnant, totalitarian society where dissent was suppressed.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Unifies humanity to face global threats, can implement large-scale solutions quickly.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Leads to a loss of personal freedom and cultural diversity, risks becoming a totalitarian state.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -30</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Invest in advanced robotics and AI to manage planetary systems, allowing humanity to retreat into a life of leisure and virtual reality.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "The AI successfully managed the planet's health, leading to a stabilized climate and a fully automated society. However, humanity lost its purpose and skills, becoming a passive observer in a world run by machines. This led to a new kind of social and existential crisis.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Removes the burden of planetary management from humans, can be highly efficient and precise.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Leads to societal apathy and a loss of purpose, creates a dangerous reliance on technology.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: -20</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Re-engage with the natural world by dismantling large-scale infrastructure and reverting to a simpler, more agrarian way of life.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This choice resulted in a more harmonious relationship with the planet. The slow pace of life and focus on community and nature led to a deep sense of contentment. However, it came at the cost of modern medicine, technology, and global communication.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Addresses the root cause of humanity's detachment from nature, leads to a more fulfilling and simple life.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Rejects technological progress and modern amenities, makes humanity vulnerable to natural disasters and disease.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 50</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text: "Continue a mixed-model approach with a balance of global governance, local communities, and technological advancement, accepting imperfection.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>impact: "This balanced approach led to a society that was neither perfect nor a failure. The world remained complex and messy, but it was resilient, adaptable, and maintained a balance between technological progress and human freedom. It was a path of continuous struggle and small victories.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>pros: "Maintains a balance between social and technological progress, allows for continuous adaptation.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cons: "Leads to an ongoing state of political and social tension, no 'perfect' solution is ever achieved.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>points: 60</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let currentRound = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let score = 0;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Get DOM elements</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const gameContainer = document.querySelector('.game-container');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const scoreValue = document.getElementById('score-value');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const roundNumber = document.getElementById('round-number');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const scenarioText = document.getElementById('scenario-text');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const optionsContainer = document.getElementById('options-container');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const outcomeState = document.getElementById('outcome-state');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const outcomeText = document.getElementById('outcome-text');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const nextBtn = document.getElementById('next-btn');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const finalScreen = document.getElementById('final-screen');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const finalMessage = document.getElementById('final-message');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const finalScoreText = document.getElementById('final-score-text');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const restartBtn = document.getElementById('restart-btn');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const gameState = document.getElementById('game-state');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const illustrationContainer = document.getElementById('illustration-container');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Function to start or restart the game</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function startGame() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentRound = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>score = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>scoreValue.textContent = score;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>finalScreen.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>gameContainer.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>gameState.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>outcomeState.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>displayRound();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Function to display the current round's content</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function displayRound() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (currentRound &gt;= gameData.length) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>endGame();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const roundData = gameData[currentRound];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>roundNumber.textContent = roundData.round;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>scenarioText.innerHTML = `&lt;h3&gt;${roundData.title}&lt;/h3&gt;&lt;br&gt;${roundData.scenario}`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>illustrationContainer.innerHTML = roundData.illustration;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>optionsContainer.innerHTML = '';</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>roundData.options.forEach((option, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const button = document.createElement('button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>button.className = 'option-btn';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>button.textContent = option.text;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>button.onclick = () =&gt; handleChoice(index);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>optionsContainer.appendChild(button);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Function to handle a user's choice</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function handleChoice(choiceIndex) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const chosenOption = gameData[currentRound].options[choiceIndex];</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Update score</p>
+<p class="p1"><span class="Apple-converted-space">        </span>score += chosenOption.points;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>scoreValue.textContent = score;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Display outcome and next round button</p>
+<p class="p1"><span class="Apple-converted-space">        </span>gameState.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>outcomeState.classList.remove('hidden');</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const outcomeHtml = `</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="report-heading"&gt;Your Choice's Impact:&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;${chosenOption.impact}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="report-heading"&gt;Pros:&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;${chosenOption.pros}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="report-heading"&gt;Cons:&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;${chosenOption.cons}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>outcomeText.innerHTML = outcomeHtml;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Change score color based on impact</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (chosenOption.points &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scoreValue.style.color = 'var(--primary-color)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scoreValue.style.color = 'var(--negative-color)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Function to advance to the next round</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function nextRound() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>currentRound++;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Reset score color</p>
+<p class="p1"><span class="Apple-converted-space">        </span>scoreValue.style.color = 'var(--primary-color)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>gameState.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>outcomeState.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>displayRound();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Function to end the game and show the final score</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function endGame() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>gameContainer.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>finalScreen.style.display = 'flex';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>finalScoreText.textContent = `Final Score: ${score}`;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (score &gt;= 100) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>finalMessage.textContent = "A Sustainable Future Achieved!";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (score &gt;= 50) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>finalMessage.textContent = "A Challenging but Hopeful Future.";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>finalMessage.textContent = "The Future is in Peril.";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Event listeners</p>
+<p class="p1"><span class="Apple-converted-space">    </span>nextBtn.addEventListener('click', nextRound);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>restartBtn.addEventListener('click', startGame);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Initial call to start the game</p>
+<p class="p1"><span class="Apple-converted-space">    </span>startGame();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
