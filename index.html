@@ -178,6 +178,69 @@
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
+        
+        #scorecard-container {
+            text-align: left;
+            margin-top: 1rem;
+            line-height: 1.6;
+            animation: fadeIn 1.2s ease-in-out;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 1rem;
+            padding: 1rem;
+            background-color: var(--border-color);
+            scrollbar-width: thin;
+            scrollbar-color: #a0aec0 #edf2f7;
+        }
+        
+        #scorecard-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        #scorecard-container::-webkit-scrollbar-track {
+            background: #edf2f7;
+            border-radius: 10px;
+        }
+        
+        #scorecard-container::-webkit-scrollbar-thumb {
+            background-color: #a0aec0;
+            border-radius: 10px;
+            border: 2px solid #edf2f7;
+        }
+        
+        .choice-summary {
+            background-color: #f7fafc;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .choice-summary h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .choice-summary p {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+        }
+        
+        .highlight-best {
+            border: 2px solid var(--primary-color);
+            background-color: #e8f5e9;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight-worst {
+            border: 2px solid var(--negative-color);
+            background-color: #ffebee;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -205,12 +268,12 @@
     <div id="final-screen" class="final-screen">
         <h2 id="final-message"></h2>
         <div id="final-score-text" class="final-score-text"></div>
+        <div id="scorecard-container"></div>
         <button id="restart-btn" class="next-btn mt-4">Play Again</button>
     </div>
 </div>
 
 <script>
-    // Game data object that holds all the scenarios, choices, and outcomes.
     const gameData = [
         {
             round: 1,
@@ -431,6 +494,7 @@
 
     let currentRound = 0;
     let score = 0;
+    let userChoices = [];
 
     // Get DOM elements
     const gameContainer = document.querySelector('.game-container');
@@ -447,16 +511,20 @@
     const restartBtn = document.getElementById('restart-btn');
     const gameState = document.getElementById('game-state');
     const illustrationContainer = document.getElementById('illustration-container');
+    const scorecardContainer = document.getElementById('scorecard-container');
 
     // Function to start or restart the game
     function startGame() {
         currentRound = 0;
         score = 0;
+        userChoices = [];
         scoreValue.textContent = score;
         finalScreen.style.display = 'none';
-        gameContainer.classList.remove('hidden');
         gameState.classList.remove('hidden');
         outcomeState.classList.add('hidden');
+        scorecardContainer.innerHTML = ''; // Clear the scorecard
+        // Ensure the restart button works on first load and subsequent plays
+        restartBtn.onclick = startGame;
         displayRound();
     }
 
@@ -486,11 +554,22 @@
     function handleChoice(choiceIndex) {
         const chosenOption = gameData[currentRound].options[choiceIndex];
         
+        // Record the choice
+        userChoices.push({
+            round: gameData[currentRound].round,
+            title: gameData[currentRound].title,
+            chosenText: chosenOption.text,
+            points: chosenOption.points,
+            impact: chosenOption.impact,
+            pros: chosenOption.pros,
+            cons: chosenOption.cons
+        });
+
         // Update score
         score += chosenOption.points;
         scoreValue.textContent = score;
 
-        // Display outcome and next round button
+        // Display the outcome screen
         gameState.classList.add('hidden');
         outcomeState.classList.remove('hidden');
         
@@ -512,6 +591,62 @@
         } else {
             scoreValue.style.color = 'var(--negative-color)';
         }
+        
+        // Logic to transition to the next state based on whether it's the final round
+        if (currentRound === gameData.length - 1) {
+            nextBtn.textContent = "View Detailed Report";
+            nextBtn.onclick = endGame;
+        } else {
+            nextBtn.textContent = "Next Round";
+            nextBtn.onclick = nextRound;
+        }
+    }
+
+    // Function to end the game and show the final score
+    function endGame() {
+        outcomeState.classList.add('hidden');
+        gameState.classList.add('hidden');
+        finalScreen.style.display = 'flex';
+        finalScoreText.textContent = `Final Score: ${score}`;
+        
+        if (score >= 100) {
+            finalMessage.textContent = "A Sustainable Future Achieved!";
+            finalScoreText.style.color = 'var(--primary-color)';
+        } else if (score >= 50) {
+            finalMessage.textContent = "A Challenging but Hopeful Future.";
+            finalScoreText.style.color = 'var(--accent-color)';
+        } else {
+            finalMessage.textContent = "The Future is in Peril.";
+            finalScoreText.style.color = 'var(--negative-color)';
+        }
+
+        // Find best and worst choices
+        const pointsArray = userChoices.map(choice => choice.points);
+        const maxPoints = Math.max(...pointsArray);
+        const minPoints = Math.min(...pointsArray);
+
+        // Generate and display the scorecard
+        userChoices.forEach(choice => {
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = 'choice-summary';
+
+            let highlightText = '';
+            if (choice.points === maxPoints && maxPoints > 0) {
+                summaryDiv.classList.add('highlight-best');
+                highlightText = '<strong> (Best Choice!)</strong>';
+            } else if (choice.points === minPoints && minPoints < 0) {
+                summaryDiv.classList.add('highlight-worst');
+                highlightText = '<strong> (Most Harmful Choice)</strong>';
+            }
+            
+            summaryDiv.innerHTML = `
+                <h4>${choice.title}${highlightText}</h4>
+                <p><strong>Your choice:</strong> ${choice.chosenText}</p>
+                <p><strong>Points gained:</strong> ${choice.points}</p>
+                <p><strong>Impact:</strong> ${choice.impact}</p>
+            `;
+            scorecardContainer.appendChild(summaryDiv);
+        });
     }
 
     // Function to advance to the next round
@@ -523,26 +658,7 @@
         outcomeState.classList.add('hidden');
         displayRound();
     }
-
-    // Function to end the game and show the final score
-    function endGame() {
-        gameContainer.classList.add('hidden');
-        finalScreen.style.display = 'flex';
-        finalScoreText.textContent = `Final Score: ${score}`;
-        
-        if (score >= 100) {
-            finalMessage.textContent = "A Sustainable Future Achieved!";
-        } else if (score >= 50) {
-            finalMessage.textContent = "A Challenging but Hopeful Future.";
-        } else {
-            finalMessage.textContent = "The Future is in Peril.";
-        }
-    }
-
-    // Event listeners
-    nextBtn.addEventListener('click', nextRound);
-    restartBtn.addEventListener('click', startGame);
-
+    
     // Initial call to start the game
     startGame();
 </script>
